@@ -9,11 +9,17 @@ from pywebio import config
 from pywebio import start_server
 from pywebio.session import run_js
 
+from pywebio.platform.flask import webio_view
+from pywebio import STATIC_PATH
+from flask import Flask, send_from_directory
+import argparse
+
+app = Flask(__name__)
 
 @config(theme="dark")
 
 
-def app():
+def app2():
     """
     C-Safe Zone
     """
@@ -100,7 +106,7 @@ def hitungan(jml_data_persil, jml_data_pb, data_persil, data_pb, inpradius):
 
 #if __name__ == '__main__':
 #    start_server(app, port=80)
-app.add_url_rule('/tool', 'webio_view', webio_view(app),
+app.add_url_rule('/tool', 'webio_view', webio_view(app2),
 		 methods=['GET', 'POST', 'OPTIONS'])
 
 if __name__ == '__main__':
@@ -108,4 +114,4 @@ if __name__ == '__main__':
     parser.add_argument("-p", "--port", type=int, default=8080)
     args = parser.parse_args()
 
-    start_server(app, port=args.port)
+    start_server(app2, port=args.port)

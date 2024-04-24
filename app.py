@@ -100,7 +100,7 @@ def hitungan(jml_data_persil, jml_data_pb, data_persil, data_pb, inpradius):
 
 #if __name__ == '__main__':
 #    start_server(app, port=80)
-app.add_url_rule('/tool', 'webio_view', webio_view(predict),
+app.add_url_rule('/tool', 'webio_view', webio_view(app),
 		 methods=['GET', 'POST', 'OPTIONS'])
 
 if __name__ == '__main__':
@@ -108,4 +108,4 @@ if __name__ == '__main__':
     parser.add_argument("-p", "--port", type=int, default=8080)
     args = parser.parse_args()
 
-    start_server(predict, port=args.port)
+    start_server(app, port=args.port)

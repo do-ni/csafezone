@@ -98,5 +98,14 @@ def hitungan(jml_data_persil, jml_data_pb, data_persil, data_pb, inpradius):
 
     put_button("Kembali",onclick=lambda: run_js('window.location.reload()'))
 
+#if __name__ == '__main__':
+#    start_server(app, port=80)
+app.add_url_rule('/tool', 'webio_view', webio_view(predict),
+		 methods=['GET', 'POST', 'OPTIONS'])
+
 if __name__ == '__main__':
-    start_server(app, port=80)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-p", "--port", type=int, default=8080)
+    args = parser.parse_args()
+
+    start_server(predict, port=args.port)
